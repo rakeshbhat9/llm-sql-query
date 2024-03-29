@@ -13,7 +13,7 @@ To run the notebooks in this repo, you will need to set up Ollama and a database
 
 2. Download your LLM of interest:
 
-    * This package uses `gemma:7b`: `mistral`
+    * This package uses `duckdb-nsql: ollama pull duckdb-nsql`
     * You can choose from many LLMs [here](https://ollama.ai/library)
 
 3. This package is using a  Postgres instance running on LAN. dvdrental database is used which is widely available on the internet.
@@ -24,7 +24,7 @@ To run the notebooks in this repo, you will need to set up Ollama and a database
     - Test on table join queries 
     - Test with llama2, mistral and zephyr to understand best model for this use-case.
     
-6. Mistral
+6. duckdb-nsql
     - Had to update custom parser to remove extra \\ generated in SQL Query.
     - Doesn't get the queries right - Always queries film_actor instead of actors. This leads to chain failure.
     ```python
