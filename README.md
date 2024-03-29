@@ -16,7 +16,7 @@ To run the notebooks in this repo, you will need to set up Ollama and a database
     * This package uses `gemma:7b`: `mistral`
     * You can choose from many LLMs [here](https://ollama.ai/library)
 
-3. This package is using a  Postgres instance running on LAN. The data in bitcoin is sourced from Kaggle dataset. But you should be able to use any database/table, as the code is agnostic to the dataset used.
+3. This package is using a  Postgres instance running on LAN. dvdrental database is used which is widely available on the internet.
 
 4. As the notebook is running opensource LLM locally, the system should have atleast 8 GB RAM [LINK](https://ollama.com/library/orca-mini#:~:text=the%20sky%20blue%3F%22%0A%20%20%20%7D%27-,Memory%20requirements,-7b%20models%20generally). 
 
