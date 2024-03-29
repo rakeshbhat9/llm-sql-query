@@ -11,13 +11,24 @@ database_url = os.getenv("DATABASE_URL")
 
 # --------------------------------------------------------------------
 
-def get_db():
-    return SQLDatabase.from_uri(
-        f"postgresql://{user}:{pwd}@{database_url}/postgres",
-        sample_rows_in_table_info=0,
-    )
+def get_db(db_name:str="postgres",include_tables:list=None):
 
-db = get_db()
+    if include_tables:
+        return SQLDatabase.from_uri(
+            f"postgresql://{user}:{pwd}@{database_url}/{db_name}",
+            sample_rows_in_table_info=0,
+            include_tables=include_tables,
+        )
+    else:
+        return SQLDatabase.from_uri(
+            f"postgresql://{user}:{pwd}@{database_url}/{db_name}",
+            sample_rows_in_table_info=0,
+        )
+
+# For multi table query, use dvdrental database
+#TO DO: Wrap this all in a class
+# db = get_db(db_name="dvdrental",include_tables=["actor","film","film_actor"])
+db = get_db(db_name="postgres")
 
 # --------------------------------------------------------------------
 
