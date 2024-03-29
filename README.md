@@ -25,10 +25,22 @@ To run the notebooks in this repo, you will need to set up Ollama and a database
     - Test with llama2, mistral and zephyr to understand best model for this use-case.
     
 6. duckdb-nsql
-    - Had to update custom parser to remove extra \\ generated in SQL Query.
-    - Doesn't get the queries right - Always queries film_actor instead of actors. This leads to chain failure.
+    - Really bad for second chain, hence using mistral.
+    - Even after specific prompts always uses different case for variable in sql query which leads to no results.
+    - Might need to play around with temperature as even for a simple questions end up getting diff SQL query in chain one.
     ```python
-    sql_chain.invoke({"question": "How many films has Penelope starred in?"})
-    " SELECT COUNT(DISTINCT film_id) FROM film_actor WHERE first_name = 'Penelope' AND last_name = (SELECT last_name FROM actor WHERE actor.actor_id = film_actor.actor_id);"
 
+        sql_chain.invoke({"question": "How many films were released in 2006?"})
+        ' SELECT COUNT(*) FROM film WHERE release_year = 2006;'
+
+        print(sql_run_chain.invoke({"question": "Give me breakdown of films by release year"})) 
+        'Errors out' 
+
+        # Per langsmith, below is the query returned when invoked in final chain.
+        ' SELECT 
+            * 
+        FROM (
+            PIVOT film ON release_year USING COUNT(*) GROUP BY title
+        ) pivot_alias;
+        '
     ```
