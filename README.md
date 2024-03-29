@@ -9,7 +9,7 @@ The code in this project refers to langchain sql-ollama template.
 
 To run the notebooks in this repo, you will need to set up Ollama and a database.
 
-1. Follow instructions [here](https://python.langchain.com/docs/integrations/chat/ollama) to download Ollama.
+1. Follow instructions [here](https://ollama.com/download) to download Ollama.
 
 2. Download your LLM of interest:
 

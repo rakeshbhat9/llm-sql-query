@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-user = os.getenv("USER")D
+user = os.getenv("USER")
 pwd = os.getenv("PSWD")
 database_url = os.getenv("DATABASE_URL")
 
