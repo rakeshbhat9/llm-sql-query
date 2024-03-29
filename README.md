@@ -25,3 +25,11 @@ custom_str_parser
 6. To-Do
     - Test on table join queries 
     - Test with llama2, mistral and zephyr to understand best model for this use-case.
+7. Mistral
+    a. Had to update custom parser to remove extra \\ generated in SQL Query.
+    b. Doesn't get the queries right - Always queries film_actor instead of actors. This leads to chain failure.
+    ```python
+    sql_chain.invoke({"question": "How many films has Penelope starred in?"})
+    " SELECT COUNT(DISTINCT film_id) FROM film_actor WHERE first_name = 'Penelope' AND last_name = (SELECT last_name FROM actor WHERE actor.actor_id = film_actor.actor_id);"
+
+    ```

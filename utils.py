@@ -27,8 +27,8 @@ def get_db(db_name:str="postgres",include_tables:list=None):
 
 # For multi table query, use dvdrental database
 #TO DO: Wrap this all in a class
-# db = get_db(db_name="dvdrental",include_tables=["actor","film","film_actor"])
-db = get_db(db_name="postgres")
+db = get_db(db_name="dvdrental",include_tables=["actor","film","film_actor"])
+# db = get_db(db_name="postgres")
 
 # --------------------------------------------------------------------
 
@@ -50,16 +50,7 @@ def run_query(query):
 
 def custom_str_parser(output):
     """Parses the SQL query from Gemma-7b's output, handling variations."""
-    sql_match = re.search(r"(`sql\n(.*?)\n`)", output, flags=re.DOTALL)
-    if sql_match:
-        return sql_match.group(2).strip()  # Extract SQL query from code block
-    else:
-        # Handle cases where the SQL query is not within code block
-        alt_match = re.search(r"SELECT (.*?) FROM", output, flags=re.IGNORECASE)
-        if alt_match:
-            return alt_match.group(1).strip()  # Extract first part of SELECT statement
-        else:
-            return f"Error {alt_match}"
+    return output.replace("\\","")
 
 
 # --------------------------------------------------------------------
