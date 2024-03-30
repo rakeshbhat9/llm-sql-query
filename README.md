@@ -44,3 +44,4 @@ To run the notebooks in this repo, you will need to set up Ollama and a database
         ) pivot_alias;
         '
     ```
+    - Fixed the above issue by adding camelcase_conditions parser. Doesn't like some actors.
